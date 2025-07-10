@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
         return student;
 	}
  
-	public void deleteById(String studentId){
+	public Response deleteById(String studentId){
         //Dummy method to delete student by id
 	}
 }

@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 
 @Document(collection = "student")
 @Data
@@ -14,7 +15,7 @@ public class StudentEntity {
     private String id;
 	private String firstName;
     private String lastName;
-	private String dob;
+	private LocalDate dob;
     private String status;
     private LocalDate createdDate;
 }

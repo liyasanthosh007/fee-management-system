@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/fee")
-@RequiredArgsConstructor
 public class FeeController {
 
     @Autowired

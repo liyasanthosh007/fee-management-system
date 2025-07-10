@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/receipt")
-@RequiredArgsConstructor
-public class FeeController {
+public class ReceiptController {
 
     @Autowired
     private ReceiptService receiptService;
 
     @GetMapping("/getByOrderId/{orderId}")
-    public ReceiptEntity getByOrderId(@PathVariable String orderId) {
-        return ResponseEntity.ok(receiptService.getByOrderId());
+    public ResponseEntity<ReceiptEntity> getByOrderId(@PathVariable String orderId) {
+        ReceiptEntity receipt = receiptService.getByOrderId(orderId);
+        if (receipt == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(receipt);
     }
    
 }

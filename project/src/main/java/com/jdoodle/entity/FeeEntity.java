@@ -11,7 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class FeeEntity {
     @Id
     private String id;
-    private String feeType;
+	private String category;
+    private String description;
     private double amount;
     private String status;
     private String createdDate;

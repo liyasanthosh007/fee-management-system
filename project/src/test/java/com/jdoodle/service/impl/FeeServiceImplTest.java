@@ -21,26 +21,20 @@ import static org.mockito.Mockito.*;
 
 class FeeServiceImplTest {
 
+	@InjectMocks
     private FeeServiceImpl feeService;
 
+	@Mock
     private ReceiptRepository receiptRepo;
+	
+	@Mock
     private FeeCatalogRepository feeCatalogRepo;
+	
+	@InjectMocks
     private PaymentService paymentService;
+	
+	@InjectMocks
     private StudentService studentService;
-
-    @BeforeEach
-    void setup() {
-        receiptRepo = mock(ReceiptRepository.class);
-        feeCatalogRepo = mock(FeeCatalogRepository.class);
-        paymentService = mock(PaymentService.class);
-        studentService = mock(StudentService.class);
-
-        feeService = new FeeServiceImpl();
-        feeService.receiptRepo = receiptRepo;
-        feeService.feeCatalogRepo = feeCatalogRepo;
-        feeService.paymentService = paymentService;
-        feeService.studentService = studentService;
-    }
 
     @Test
     void testCollectFee_success() {
