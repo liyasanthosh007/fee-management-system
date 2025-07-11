@@ -12,7 +12,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(FeeController.class)
+import java.time.LocalDate;
+
+@WebMvcTest(ReceiptController.class)
 class ReceiptControllerTest {
 
     @Autowired
@@ -24,16 +26,23 @@ class ReceiptControllerTest {
     @Test
     void testGetByOrderId_found() throws Exception {
         String orderId = "ORDER123";
-        ReceiptEntity mockReceipt = new ReceiptEntity();
-        mockReceipt.setOrderId(orderId);
-        mockReceipt.setAmount(1500.0);
+        String feeId = "FEE123";
+        String studentId = "STU123";
+        Double amount = 1500.0;
+        String status = "SUCCESS";
+        LocalDate createdDate= LocalDate.now();
+        ReceiptEntity mockReceipt = new ReceiptEntity(orderId, feeId, studentId, amount, status, createdDate);
 
         when(receiptService.getByOrderId(orderId)).thenReturn(mockReceipt);
 
         mockMvc.perform(get("/receipt/getByOrderId/" + orderId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.orderId").value(orderId))
-                .andExpect(jsonPath("$.amount").value(1500.0));
+                .andExpect(jsonPath("$.feeId").value(feeId))
+                .andExpect(jsonPath("$.studentId").value(studentId))
+                .andExpect(jsonPath("$.amount").value(1500.0))
+                .andExpect(jsonPath("$.status").value(status))
+                .andExpect(jsonPath("$.createdDate").value(createdDate));
     }
 	
 	@Test

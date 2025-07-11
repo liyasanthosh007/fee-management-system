@@ -1,9 +1,13 @@
 package com.jdoodle.controller;
 
 import com.jdoodle.entity.ReceiptEntity;
+import com.jdoodle.model.FeeRequest;
 import com.jdoodle.entity.FeeEntity;
 import com.jdoodle.service.FeeService;
-import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

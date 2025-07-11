@@ -3,6 +3,10 @@ package com.jdoodle.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.jdoodle.entity.StudentEntity;
+import com.jdoodle.model.Response;
+import com.jdoodle.service.StudentService;
+
 import java.util.List;
 
 @RestController

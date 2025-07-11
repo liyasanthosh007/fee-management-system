@@ -1,4 +1,16 @@
-package com.jdoodle.service.impl;
+package com.jdoodle.service.implementation;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jdoodle.entity.FeeEntity;
+import com.jdoodle.entity.ReceiptEntity;
+import com.jdoodle.model.FeeRequest;
+import com.jdoodle.repository.FeeCatalogRepository;
+import com.jdoodle.repository.ReceiptRepository;
+import com.jdoodle.service.FeeService;
 
 public class FeeServiceImpl implements FeeService {
 
@@ -7,12 +19,6 @@ public class FeeServiceImpl implements FeeService {
 	
 	@Autowired
     private FeeCatalogRepository feeCatalogRepo;
-    
-    @Autowired
-    private PaymentService paymentService;
-	
-	@Autowired
-    private StudentService studentService;
 
     public ReceiptEntity collectFee(FeeRequest req) {
         String studentId = req.getStudentId();
@@ -27,13 +33,13 @@ public class FeeServiceImpl implements FeeService {
 			paymentStatus = processPayment(feeId, student, req.getAmount());
 		**/
 
-        ReceiptEntity receipt = new ReceiptEntity(null, studentId, feeId, req.getAmount(), paymentStatus, LocalDate.now());
+        ReceiptEntity receipt = new ReceiptEntity(null, feeId, studentId, req.getAmount(), paymentStatus, LocalDate.now());
         receipt = receiptRepo.save(receipt);
         return receipt;
     }
 
-    public List<FeeCatalogEntity> getAllFees(){
-        List<FeeCatalogEntity> feeCatalogEntityList = feeCatalogRepo.findAll();
+    public List<FeeEntity> getAllFees(){
+        List<FeeEntity> feeCatalogEntityList = feeCatalogRepo.findAll();
         return feeCatalogEntityList;
     }
 	

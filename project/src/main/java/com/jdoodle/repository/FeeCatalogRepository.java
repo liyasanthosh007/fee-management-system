@@ -1,10 +1,10 @@
 package com.jdoodle.repository;
 
-import com.jdoodle.model.FeeEntity;
+import com.jdoodle.entity.FeeEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface FeeCatalogRepository extends MongoRepository<FeeEntity, String> {
-    Optional<List<FeeEntity>> findAll();
+    List<FeeEntity> findAll();
 }

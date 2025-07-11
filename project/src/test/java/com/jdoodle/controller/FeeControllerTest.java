@@ -3,7 +3,7 @@ package com.jdoodle.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jdoodle.entity.ReceiptEntity;
 import com.jdoodle.entity.FeeEntity;
-import com.jdoodle.request.FeeRequest;
+import com.jdoodle.model.FeeRequest;
 import com.jdoodle.service.FeeService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

@@ -1,16 +1,16 @@
 package com.jdoodle.service.impl;
 
 import com.jdoodle.entity.ReceiptEntity;
-import com.jdoodle.entity.FeeCatalogEntity;
+import com.jdoodle.entity.FeeEntity;
 import com.jdoodle.repository.ReceiptRepository;
 import com.jdoodle.repository.FeeCatalogRepository;
-import com.jdoodle.request.FeeRequest;
-import com.jdoodle.service.PaymentService;
+import com.jdoodle.model.FeeRequest;
 import com.jdoodle.service.StudentService;
+import com.jdoodle.service.implementation.FeeServiceImpl;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -29,9 +29,6 @@ class FeeServiceImplTest {
 	
 	@Mock
     private FeeCatalogRepository feeCatalogRepo;
-	
-	@InjectMocks
-    private PaymentService paymentService;
 	
 	@InjectMocks
     private StudentService studentService;
@@ -55,17 +52,17 @@ class FeeServiceImplTest {
 
     @Test
     void testGetAllFees() {
-        List<FeeCatalogEntity> mockFees = Arrays.asList(
-            new FeeCatalogEntity("fee1", "Tuition", 1000.0),
-            new FeeCatalogEntity("fee2", "Lab", 500.0)
+        List<FeeEntity> mockFees = Arrays.asList(
+            new FeeEntity("fee1", "Tuition", 1000.0),
+            new FeeEntity("fee2", "Lab", 500.0)
         );
 
         when(feeCatalogRepo.findAll()).thenReturn(mockFees);
 
-        List<FeeCatalogEntity> result = feeService.getAllFees();
+        List<FeeEntity> result = feeService.getAllFees();
 
         assertEquals(2, result.size());
-        assertEquals("Tuition", result.get(0).getFeeName());
+        assertEquals("Tuition", result.get(0).getDescription());
         assertEquals(500.0, result.get(1).getAmount());
     }
 }
