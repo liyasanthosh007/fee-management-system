@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.jdoodle.service.impl.ReceiptServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.071 s <<< FAILURE! -- in com.jdoodle.service.impl.ReceiptServiceImplTest
+com.jdoodle.service.impl.ReceiptServiceImplTest.testGetByOrderId -- Time elapsed: 0.010 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.jdoodle.repository.ReceiptRepository.findByOrderId(String)" because "this.receiptRepository" is null
+	at com.jdoodle.service.impl.ReceiptServiceImplTest.testGetByOrderId(ReceiptServiceImplTest.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

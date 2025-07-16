@@ -2,11 +2,13 @@ package com.jdoodle.service.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 import com.jdoodle.entity.StudentEntity;
 import com.jdoodle.model.Response;
 import com.jdoodle.service.StudentService;
 
+@Service
 public class StudentServiceImpl implements StudentService {
  //Dummy student service
     public StudentEntity getById(String studentId) {

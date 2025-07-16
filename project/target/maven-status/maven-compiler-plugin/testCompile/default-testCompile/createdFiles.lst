@@ -1,0 +1,5 @@
+com/jdoodle/service/impl/ReceiptServiceImplTest.class
+com/jdoodle/controller/ReceiptControllerTest.class
+com/jdoodle/JdoodleProjectApplicationTests.class
+com/jdoodle/service/impl/FeeServiceImplTest.class
+com/jdoodle/controller/FeeControllerTest.class

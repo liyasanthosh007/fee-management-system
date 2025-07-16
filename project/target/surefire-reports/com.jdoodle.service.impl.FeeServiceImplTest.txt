@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: com.jdoodle.service.impl.FeeServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.398 s <<< FAILURE! -- in com.jdoodle.service.impl.FeeServiceImplTest
+com.jdoodle.service.impl.FeeServiceImplTest.testGetAllFees -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.jdoodle.repository.FeeCatalogRepository.findAll()" because "this.feeCatalogRepo" is null
+	at com.jdoodle.service.impl.FeeServiceImplTest.testGetAllFees(FeeServiceImplTest.java:60)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.jdoodle.service.impl.FeeServiceImplTest.testCollectFee_success -- Time elapsed: 0.396 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.jdoodle.repository.ReceiptRepository.save(com.jdoodle.entity.ReceiptEntity)" because "this.receiptRepo" is null
+	at com.jdoodle.service.impl.FeeServiceImplTest.testCollectFee_success(FeeServiceImplTest.java:41)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

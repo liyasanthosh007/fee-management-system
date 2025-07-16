@@ -1,7 +1,7 @@
 package com.jdoodle.controller;
 
-import com.jdoodle.entity.ReceiptEntity;
 import com.jdoodle.model.FeeRequest;
+import com.jdoodle.model.Response;
 import com.jdoodle.entity.FeeEntity;
 import com.jdoodle.service.FeeService;
 
@@ -24,7 +24,7 @@ public class FeeController {
     }
     
     @PostMapping("/collect")
-    public ResponseEntity<ReceiptEntity> collectFee(@RequestBody FeeRequest request) {
+    public ResponseEntity<Response> collectFee(@RequestBody FeeRequest request) {
         return ResponseEntity.ok(feeService.collectFee(request));
     }
 }

@@ -1,19 +1,18 @@
 package com.jdoodle.service.impl;
 
+import com.jdoodle.common.PaymentStatus;
 import com.jdoodle.entity.ReceiptEntity;
 import com.jdoodle.repository.ReceiptRepository;
 import com.jdoodle.service.implementation.ReceiptServiceImpl;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 class ReceiptServiceImplTest {
 
@@ -27,12 +26,12 @@ class ReceiptServiceImplTest {
     void testGetByOrderId() {
         
         String orderId = "ORDER123";
-        String studentId = "STU123";
+        String studentId = "S123";
         String feeId = "FEE123";
         Double amount = 2500.0;
-        String status = "SUCCESS";
-        LocalDate createdDate = LocalDate.now();
-        ReceiptEntity mockReceipt = new ReceiptEntity(orderId, studentId, feeId, amount, status, createdDate);
+        Double paidAmount = 0.0;
+        LocalDateTime createdDate = LocalDateTime.now();
+        ReceiptEntity mockReceipt = new ReceiptEntity(orderId, studentId, feeId, amount, paidAmount, PaymentStatus.UNPAID, createdDate, createdDate);
 
         when(receiptRepository.findByOrderId(orderId)).thenReturn(mockReceipt);
 
@@ -42,8 +41,8 @@ class ReceiptServiceImplTest {
         assertEquals(orderId, result.getOrderId());
         assertEquals(feeId, result.getFeeId());
         assertEquals(studentId, result.getStudentId());
-        assertEquals(amount, result.getAmountPaid());
-        assertEquals(status, result.getStatus());
+        assertEquals(amount, result.getPaidAmount());
+        assertEquals(PaymentStatus.UNPAID, result.getPaymentStatus());
         assertEquals(createdDate, result.getCreatedDate());
     }
 }

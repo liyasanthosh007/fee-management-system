@@ -2,6 +2,7 @@ package com.jdoodle.controller;
 
 import com.jdoodle.entity.ReceiptEntity;
 import com.jdoodle.service.ReceiptService;
+import com.jdoodle.common.PaymentStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,7 +13,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @WebMvcTest(ReceiptController.class)
 class ReceiptControllerTest {
@@ -29,9 +30,10 @@ class ReceiptControllerTest {
         String feeId = "FEE123";
         String studentId = "STU123";
         Double amount = 1500.0;
-        String status = "SUCCESS";
-        LocalDate createdDate= LocalDate.now();
-        ReceiptEntity mockReceipt = new ReceiptEntity(orderId, feeId, studentId, amount, status, createdDate);
+        Double paidAmount = 1500.0;
+        PaymentStatus status = PaymentStatus.UNPAID;
+        LocalDateTime createdDate= LocalDateTime.now();
+        ReceiptEntity mockReceipt = new ReceiptEntity(orderId, feeId, studentId, amount, paidAmount, status, createdDate, createdDate);
 
         when(receiptService.getByOrderId(orderId)).thenReturn(mockReceipt);
 

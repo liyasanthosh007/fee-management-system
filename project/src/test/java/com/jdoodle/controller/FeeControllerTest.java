@@ -1,9 +1,10 @@
 package com.jdoodle.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jdoodle.entity.ReceiptEntity;
 import com.jdoodle.entity.FeeEntity;
 import com.jdoodle.model.FeeRequest;
+import com.jdoodle.model.Response;
+import com.jdoodle.common.PaymentStatus;
 import com.jdoodle.service.FeeService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,11 +14,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -36,8 +35,8 @@ class FeeControllerTest {
     @Test
     void testGetAllFees() throws Exception {
         List<FeeEntity> mockFees = Arrays.asList(
-            new FeeEntity("fee1", "Tuition", 1000.0),
-            new FeeEntity("fee2", "Library", 200.0)
+            new FeeEntity("1","fee1", "Tuition", 1000.0, "1","10/07/2025"),
+            new FeeEntity("2","fee2", "Library", 200.0, "1","10/07/2025")
         );
 
         Mockito.when(feeService.getAllFees()).thenReturn(mockFees);
@@ -50,28 +49,25 @@ class FeeControllerTest {
 
     @Test
     void testCollectFee() throws Exception {
-        FeeRequest request = new FeeRequest("student123", "fee123", 1500.0);
+        
+                FeeRequest request = new FeeRequest("student123", "fee123", 1500.0);
+                Response mockResponse = new Response(
+                        PaymentStatus.PARTIALLY_PAID.name(),
+                        "Payment successful",
+                        "ORD123"
+                );
+        
+                Mockito.when(feeService.collectFee(Mockito.any(FeeRequest.class)))
+                       .thenReturn(mockResponse);
+        
+                mockMvc.perform(post("/api/fees/collect")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.status").value("PARTIALLY_PAID"))
+                    .andExpect(jsonPath("$.description").value("Payment successful"))
+                    .andExpect(jsonPath("$.data").value("ORD123"));
 
-        ReceiptEntity receipt = new ReceiptEntity(
-                "order123",
-                "fee123",
-                "student123",
-                1500.0,
-                "SUCCESS",
-                LocalDate.of(2024, 7, 9)
-        );
-
-        Mockito.when(feeService.collectFee(any(FeeRequest.class))).thenReturn(receipt);
-
-        mockMvc.perform(post("/fee/collect")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.orderId").value("order123"))
-                .andExpect(jsonPath("$.feeId").value("fee123"))
-                .andExpect(jsonPath("$.studenId").value("student123"))
-                .andExpect(jsonPath("$.amountPaid").value(1500.0))
-                .andExpect(jsonPath("$.status").value("SUCCESS"))
-                .andExpect(jsonPath("$.createdDate").value("2024-07-09"));
+        
     }
 }

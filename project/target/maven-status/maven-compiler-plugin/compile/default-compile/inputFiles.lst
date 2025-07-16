@@ -1,0 +1,16 @@
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/controller/FeeController.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/model/FeeRequest.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/entity/FeeEntity.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/repository/FeeCatalogRepository.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/FeeService.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/controller/ReceiptController.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/repository/ReceiptRepository.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/implementation/StudentServiceImpl.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/implementation/FeeServiceImpl.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/entity/StudentEntity.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/StudentService.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/ReceiptService.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/service/implementation/ReceiptServiceImpl.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/entity/ReceiptEntity.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/model/Response.java
+/workspaces/fee-management-system/project/src/main/java/com/jdoodle/controller/StudentController.java

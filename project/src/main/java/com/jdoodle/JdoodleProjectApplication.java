@@ -8,6 +8,6 @@ public class JdoodleProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JdoodleProjectApplication.class, args);
-}
+	}
 
 }
